@@ -14,7 +14,7 @@ export default function App() {
   const [nome, setNome] = useState('');
   const [nomeSalvo, setNomeSalvo] = useState('');
   const [token, setToken] = useState('');
-  const respondeData = { token: 'token_exemplo_estático', admin: true}
+  const respondeData = { token: 'guardando_token_exemplo_estático', admin: true}
 
   async function handleGravarNome() {
     await AsyncStorage.setItem('nome', nome);
@@ -45,9 +45,8 @@ export default function App() {
 
     try {
       const value = await AsyncStorage.getItem('ACCESS_TOKEN');
-      console.warn(value);
       if (value !== null) {
-        setToken(JSON.parse(value))
+        setToken(value)
       }
     } catch (error) {
       console.log('Ocorreu algum tipo de erro com o token...')
@@ -62,7 +61,7 @@ export default function App() {
       <TextInput placeholder="Nome vindo do storage" style={styles.input}>Nome vindo do storage: {nomeSalvo}</TextInput>
       <Button title="Salvar Nome" onPress={handleGravarNome}></Button>
       <Button title="Salvar Token" onPress={handleGravarToken}></Button>
-      <TextInput placeholder="Token vindo do storage" style={styles.input}>{setToken}</TextInput>
+      <TextInput placeholder="Token vindo do storage" style={styles.input}>{token}</TextInput>
     </View>
   );
 }
