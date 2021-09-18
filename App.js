@@ -1,12 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Button,
-  Keyboard,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
+import {Button, Keyboard, Text, TextInput, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './src/assets/styles';
 
 //  Aqui a App principal do aplicativo
 export default function App() {
@@ -63,6 +58,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>Aula sobre AsyncStorage</Text>
       <TextInput
         placeholder="Digite aqui para salvar"
         value={nome}
@@ -72,37 +68,15 @@ export default function App() {
       <TextInput placeholder="Nome vindo do storage" style={styles.input}>
         Nome vindo do storage: {nomeSalvo}
       </TextInput>
-      <Button
-        title="Salvar Nome"
-        onPress={handleGravarNome}
-        style={styles.botao}></Button>
-      <Button
-        title="Salvar Token"
-        onPress={handleGravarToken}
-        style={styles.botao}></Button>
+      <View style={styles.containerBotao1}>
+        <Button title="Salvar Nome" onPress={handleGravarNome} />
+      </View>
+      <View style={styles.containerBotao2}>
+        <Button title="Salvar Token" onPress={handleGravarToken} />
+      </View>
       <TextInput placeholder="Token vindo do storage" style={styles.input}>
         {token}
       </TextInput>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#CCC',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    backgroundColor: '#FFF',
-    width: '98%',
-    marginTop: 5,
-    marginBottom: 5,
-    borderRadius: 5,
-  },
-  botao: {
-    marginBottom:5,
-
-  },
-});
